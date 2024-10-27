@@ -13,6 +13,8 @@
 - Consistency: all clients see the same data at the same time, no matter which node they connect to.
 - Availability: means that any client making a request for data gets a response, even if one or more nodes are down.
 - Partition tolerance: the cluster must continue to work despite any number of communication breakdowns between nodes in the system.
+![alt text](image-1.png)
+
 ### 1. **Feature Expectations [5 min]**
 - **(1) Use Cases**
 - **(2) Scenarios That Will Not Be Covered**
@@ -44,8 +46,6 @@
 - **(2) Consistency vs. Availability**
   - Weak/strong/eventual consistency.
   - Failover/replication for availability.
-
-
 - **(3) Scalability:** Define how the system will scale horizontally or vertically.
 - **(4) Reliability and Fault Tolerance:** Ensure the system remains operational despite failures.
 
@@ -54,8 +54,6 @@
 - **(2) Database Schema**
 - **(3) Basic Algorithm**
 - **(4) High-Level Design for Read/Write Scenario**
-
-
 - **(5) Component Interaction:** How different components communicate and interact.
 - **(6) Data Flow Diagrams:** Visual representation of data movement through the system.
 
@@ -76,8 +74,6 @@
 - **(1) Throughput of Each Layer**
 - **(2) Latency Caused Between Each Layer**
 - **(3) Overall Latency Justification**
-
-
 - **(4) Technology Choices:** Explain why specific technologies or tools were chosen over alternatives.
 - **(5) Trade-offs:** Discuss any trade-offs made to meet design goals (e.g., consistency vs. availability).
 
