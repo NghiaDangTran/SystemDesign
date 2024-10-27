@@ -1,4 +1,5 @@
 # MARKSHARP
+
 # Rate Limiter
 
 - A user can write no more than 2 posts per second.
@@ -7,7 +8,7 @@
 
 Requirements:
 
-- Server side API (Good Question: implement at API Gateway Or Server side)
+- Server side API (Good Question: implement at Client Side or API Gateway Or Server side)
 - support different sets of throttle rule
 - handle a large number of requests.
 - in a distributed environment
@@ -71,10 +72,11 @@ In case a request is rate limited, APIs return a HTTP response code 429 (too man
 
 # Distributed environment
 
-1.  Race condition: when 2 call write to one key it may unintentianllu allow more than what we allow 
+1. Race condition: when 2 call write to one key it may unintentianllu allow more than what we allow 
 
--  IN example: at time 1 update counter to 1  but at time 2, 2 sperate call to update counter +1 (in theory it should be 3 now so it allow both ), but in reality because at first it check the counter is still have enough space so it just allow and blindly appect that 2 new call.
+- IN example: at time 1 update counter to 1  but at time 2, 2 sperate call to update counter +1 (in theory it should be 3 now so it allow both ), but in reality because at first it check the counter is still have enough space so it just allow and blindly appect that 2 new call.
 - Solution: we can use pratice `atomic operation` like
+
 ```
 let update = redis increase counter by 1
 if update> allow Rule:
@@ -83,23 +85,23 @@ else just continue foward that to backend
 ```
 
 2. Synchronization issue clients can send requests to a different rate limiter\
+
 - use sticky sessions allow a client to send traffic to the same rate limiter ( advisable because it is neither scalable nor flexible)
 - instead use mutiple redis at each of the rate limmter we can alow only one central redis to handel 
 
 3. Performace optimization
+
 - reduce latency by route traffic from one region to a specifc location that have the closet distance to our  serivce 
 
 4. Monitoring
-- add monitoring for when call blocked, 
-he rate limiting algorithm is effective.
 
-•The rate limiting rules are effective.
+- add monitoring for when call blocked, 
+- the rate limiting algorithm is effective.
+- The rate limiting rules are effective.
 
 For example, if rate limiting rules are too strict, many valid requests are dropped. In this case, we want to relax the rules a little bit. In another example, we notice our rate limiter becomes ineffective when there is a sudden increase in traffic like flash sales. In this scenario, we may replace the algorithm to support burst traffic. Token bucket is a good fit here. 
 
-
-
-Avoid being rate limited. Design your client with best practices:
+Avoid being rate limited. Design your client with best practices (`improvement`): 
 
 •Use client cache to avoid making frequent API calls.
 
