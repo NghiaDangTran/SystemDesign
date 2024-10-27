@@ -1,0 +1,161 @@
+
+![alt text](image.png)
+
+
+# 4 Pillars of Large System
+-  Scalability: `Growth Smoothly`
+-  Availability: `make sure it work 24/7, 365 a year, work all time`
+-  Reliabbility: `Make sure operate correctly`
+-  performance: `Do Fast and efficient`
+
+
+# CAP Theorem 
+- Consistency: all clients see the same data at the same time, no matter which node they connect to.
+- Availability: means that any client making a request for data gets a response, even if one or more nodes are down.
+- Partition tolerance: the cluster must continue to work despite any number of communication breakdowns between nodes in the system.
+### 1. **Feature Expectations [5 min]**
+- **(1) Use Cases**
+- **(2) Scenarios That Will Not Be Covered**
+- **(3) Who Will Use**
+- **(4) How Many Will Use**
+- **(5) Usage Patterns**
+- **(6) Functional Requirements:** Clearly define what the system should do.
+- **(7) Non-Functional Requirements:** Outline requirements such as scalability, reliability, and maintainability.
+
+### 2. **Estimates [5 min]**
+- **(1) Throughput**
+  - Queries per second (QPS) for read and write queries.
+- **(2) Latency**
+  - Expected latency for read and write queries.
+- **(3) Read/Write Ratio**
+- **(4) Traffic Estimates**
+  - Write (QPS, volume of data).
+  - Read (QPS, volume of data).
+- **(5) Storage Estimates**
+- **(6) Memory Estimates**
+  - If using a cache, what kind of data to store.
+  - RAM and machine requirements.
+  - Disk/SSD storage needs.
+- **(7) Peak Load Estimates:** Anticipate traffic spikes and how the system handles them.
+- **(8) Growth Projections:** Estimate how usage and data volume will grow over time.
+
+### 3. **Design Goals [5 min]**
+- **(1) Latency and Throughput Requirements**
+- **(2) Consistency vs. Availability**
+  - Weak/strong/eventual consistency.
+  - Failover/replication for availability.
+
+
+- **(3) Scalability:** Define how the system will scale horizontally or vertically.
+- **(4) Reliability and Fault Tolerance:** Ensure the system remains operational despite failures.
+
+### 4. **High-Level Design [5-8 min]**
+- **(1) APIs for Read/Write Scenarios for Crucial Components**
+- **(2) Database Schema**
+- **(3) Basic Algorithm**
+- **(4) High-Level Design for Read/Write Scenario**
+
+
+- **(5) Component Interaction:** How different components communicate and interact.
+- **(6) Data Flow Diagrams:** Visual representation of data movement through the system.
+
+### 5. **Deep Dive [10-12 min]**
+- **(1) Scaling the Algorithm**
+- **(2) Scaling Individual Components**
+  - Availability, Consistency, and Scale story for each component
+  - Consistency and availability patterns.
+- **(3) Components to Consider**
+  - DNS, CDN, Load Balancers, Reverse Proxy, Application Layer Scaling, Database options, Caches, Asynchronism, Communication protocols.
+
+*Suggested Additions:*
+- **(4) Deployment Architecture:** Containerization (Docker), orchestration (Kubernetes), CI/CD pipelines.
+- **(5) Data Management:** Data partitioning, replication strategies, data backup, and recovery plans.
+- **(6) Monitoring and Alerting:** Beyond just components, define how the system will be monitored and alerts managed.
+
+### 6. **Justify [5 min]**
+- **(1) Throughput of Each Layer**
+- **(2) Latency Caused Between Each Layer**
+- **(3) Overall Latency Justification**
+
+
+- **(4) Technology Choices:** Explain why specific technologies or tools were chosen over alternatives.
+- **(5) Trade-offs:** Discuss any trade-offs made to meet design goals (e.g., consistency vs. availability).
+
+### 7. **Key Metrics to Measure [3 min]**
+- **(1) Identify key metrics relevant to your system's design**
+  - Availability, Latency, Throttling, Request Patterns/Volume, Customer Experience Metrics
+- **(2) Define metrics for infrastructure and resources**
+  - Tools like Grafana with Prometheus, AppDynamics, etc.
+
+
+- **(3) Business Metrics:** Metrics that align with business goals, such as user engagement or revenue impact.
+
+### 8. **System Health Monitoring [2 min]**
+- **(1) Measure app index and latency of microservices**
+- **(2) Tools like New Relic, AppDynamics**
+  - Use Grafana with Prometheus or AppDynamics for monitoring
+- **(3) Canaries**
+  - Simulate customer experience to detect service degradation proactively
+
+
+- **(4) Automated Recovery:** Define how the system responds to detected issues (e.g., auto-scaling, failover mechanisms).
+
+### 9. **Log Systems [2 min]**
+- **(1) Implement tools to gather and visualize metrics**
+- **(2) Collect and analyze logs with ELK (Elastic, Logstash, Kibana) or Splunk.**
+
+
+- **(3) Log Management Strategy:** Define log retention policies, access controls, and log parsing rules.
+
+### 10. **Security [2 min]**
+- **(1) Firewall, encryptions at rest and in transit**
+- **(2) TLS**
+- **(3) Authentication, Authorization (AuthN/Z)**
+- **(4) Limited Egress/Ingress**
+- **(5) Principle of least privilege**
+
+*Suggested Additions:*
+- **(6) Security Audits and Compliance:** Regular security reviews and adherence to relevant regulations (e.g., GDPR, HIPAA).
+- **(7) Intrusion Detection and Prevention:** Tools and strategies to detect and prevent unauthorized access.
+- **(8) Data Privacy:** Ensuring user data is handled in compliance with privacy laws and best practices.
+
+### **Additional Sections to Consider**
+
+1. **Deployment and Infrastructure Management**
+   - **Containerization and Orchestration:** Utilize Docker and Kubernetes for scalable deployments.
+   - **Infrastructure as Code (IaC):** Tools like Terraform or CloudFormation for managing infrastructure.
+
+2. **Disaster Recovery and Backup Strategies**
+   - **Backup Plans:** Regular data backups and storage strategies.
+   - **Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO):** Define acceptable downtime and data loss.
+
+3. **Cost Optimization**
+   - **Budget Constraints:** Ensure the design aligns with budgetary limits.
+   - **Resource Utilization:** Efficient use of resources to minimize costs without compromising performance.
+
+4. **Compliance and Regulatory Considerations**
+   - **Data Governance:** Policies for data management and compliance with laws.
+   - **Industry Standards:** Adherence to standards relevant to your domain.
+
+5. **User Experience (UX) Considerations**
+   - **Latency Impact on UX:** Ensure system performance meets user expectations.
+   - **Accessibility:** Design for users with varying abilities.
+
+6. **Internationalization and Localization**
+   - **Multi-language Support:** If applicable, support for multiple languages and regions.
+   - **Time Zones and Cultural Considerations:** Handle data and interactions across different time zones and cultural contexts.
+
+7. **Testing Strategies**
+   - **Automated Testing:** Unit tests, integration tests, and end-to-end tests.
+   - **Continuous Integration/Continuous Deployment (CI/CD):** Ensure code quality and rapid deployment cycles.
+
+8. **API Rate Limiting and Throttling**
+   - **Protecting Services:** Prevent abuse and ensure fair usage of APIs.
+
+9. **Data Flow and Data Management**
+   - **Data Pipelines:** Efficient data processing and movement through the system.
+   - **ETL Processes:** Extract, Transform, Load processes for data integration.
+
+10. **Governance and Compliance**
+    - **Policy Enforcement:** Ensure that all aspects of the system adhere to defined policies and regulations.
+
