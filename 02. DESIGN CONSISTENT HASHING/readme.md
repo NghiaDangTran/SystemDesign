@@ -35,3 +35,45 @@ still almost the same with ourt module method, but this time if node B down, ins
 Easy to add new node too, new key just add to the clockwise closet node
 
 ![alt text](image-1.png)
+
+
+
+One of the problem
+
+- hard to keep a balance betwwen data in each node, so some of the node gonna carry more data than the others,
+- second be cause it is a hash and we use clockwise rule some time there may be a large distance from one node to orther so it make data just write to that only node only
+
+Solution:
+
+- Virtual nodes: we can implement addtional virtual nodes on the point, example hash(node_name) return 1 then we can do a reference point to may be at 5 and 10 so we  any key from that can write to thatnode, this work really well when we have impalance resource betwwen each node: ie we know node 1 is stronger than node 2, then we can priotize more write to node 1(more virtual node), 
+- when we add or remove node, we can go counter clockwise from the new node to the next node and every key can write to that new node
+
+
+
+
+
+ The benefits of consistent hashing include:
+
+- Minimized keys are redistributed when servers are added or removed.
+
+- It is easy to scale horizontally because data are more evenly distributed.
+
+- Mitigate hotspot key problem. Excessive access to a specific shard could cause server
+
+overload. Imagine data for Katy Perry, Justin Bieber, and Lady Gaga all end up on the
+
+same shard. Consistent hashing helps to mitigate the problem by distributing the data more
+
+evenly.
+
+Consistent hashing is widely used in real-world systems, including some notable ones:
+
+- Partitioning component of Amazon’s Dynamo database [3]
+
+- Data partitioning across the cluster in Apache Cassandra [4]
+
+- Discord chat application [5]
+
+- Akamai content delivery network [6]
+
+- Maglev network load balancer [7]
